@@ -43,7 +43,6 @@
   <link href="assets/css/appointment.css" rel="stylesheet">
 
 
-
   <!-- google add -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7517886064028614"
     crossorigin="anonymous"></script>
@@ -1548,38 +1547,31 @@ because it requires specific images, where more than 50% of bg is transparent or
         <div class="row py-5">
           <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-
-            <form>
-
+            <form action="assets/php/process_form.php" method="POST">
               <div class="row jumbotron">
                 <div class="col-sm-6 form-group">
-                  <label for="name-f">First Name</label>
-                  <input type="text" class="form-control" name="fname" id="name-f" placeholder="Enter your first name."
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name." required>
+                </div>
+
+                <div class="col-sm-6 form-group">
+                  <label for="address">Address</label>
+                  <input type="address" class="form-control" name="Locality" id="address" placeholder="Address"
                     required>
                 </div>
-                <div class="col-sm-6 form-group">
-                  <label for="name-l">Last name</label>
-                  <input type="text" class="form-control" name="lname" id="name-l" placeholder="Enter your last name."
+
+                <div class="col-sm-4 form-group">
+                  <label for="tel">Phone</label>
+                  <input type="tel" name="phone" class="form-control" id="tel" placeholder="Enter Your Contact Number."
                     required>
                 </div>
-                <div class="col-sm-6 form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email."
-                    required>
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="address-1">Address Line-1</label>
-                  <input type="address" class="form-control" name="Locality" id="address-1"
-                    placeholder="Locality/House/Street no." required>
-                </div>
-                <div class="col-sm-6 form-group">
-                  <label for="address-2">Address Line-2</label>
-                  <input type="address" class="form-control" name="address" id="address-2"
-                    placeholder="Locality/House/Street no.">
+                <div class="col-sm-4 form-group">
+                  <label for="Date">Date</label>
+                  <input type="Date" name="date" class="form-control" id="Date" required>
                 </div>
                 <div class="col-sm-4 form-group">
                   <label for="State" name="state">State</label>
-                  <select class="form-control custom-select browser-default">
+                  <select class="form-control custom-select browser-default" name="state">
 
                     <option value="Chicago">Chicago</option>
                     <option value="Texas">Texas</option>
@@ -1597,38 +1589,11 @@ because it requires specific images, where more than 50% of bg is transparent or
                   <label for="zip">ZIP-Code</label>
                   <input type="zip" class="form-control" name="Zip" id="zip" placeholder="Zip-Code." required>
                 </div>
-                <!-- <div class="col-sm-6 form-group">
-                  <label for="Country" name="country">Country</label>
-                  <select class="form-control custom-select browser-default">
-                    <option value="Canada">US</option>
-                  </select>
-                </div> -->
-                <!-- <div class="col-sm-6 form-group">
-                  <label for="Date">Date Of Birth</label>
-                  <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
-              </div>
-              <div class="col-sm-6 form-group">
-                  <label for="sex">Gender</label>
-                  <select id="sex" class="form-control browser-default custom-select">
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="unspesified">Unspecified</option>
-              </select>
-              </div> -->
-                <!-- <div class="col-sm-2 form-group">
-                  <label for="cod">Country code</label>
-                  <select class="form-control browser-default custom-select">
-                    <option data-countryCode="CA" value="1">US (+1)</option>
-                  </select>
-                </div> -->
-                <div class="col-sm-4 form-group">
-                  <label for="tel">Phone</label>
-                  <input type="tel" name="phone" class="form-control" id="tel" placeholder="Enter Your Contact Number."
-                    required>
-                </div>
+
+
                 <div class="col-sm-6 form-group">
-                  <label for="package-select">Select a package:</label>
-                  <select id="package-select" class="form-control browser-default custom-select">
+                  <label name="package-select" for="package-select">Select a package:</label>
+                  <select id="package-select" class="form-control browser-default custom-select" name="package-select">
                     <option value="pkg1">Basic Package
                       $199.00</option>
                     <option value="pkg2">Standard Package
@@ -1644,12 +1609,6 @@ because it requires specific images, where more than 50% of bg is transparent or
 
                   </select>
                 </div>
-
-                <!-- <div class="col-sm-12">
-                  <input type="checkbox" class="form-check d-inline" id="chb" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
-                  </label>
-              </div> -->
-
                 <div class="col-sm-12 form-group mb-0">
                   <button name="esubmit" class="btn btn-primary float-right">Book An Appointment</button>
                 </div>
@@ -1659,9 +1618,45 @@ because it requires specific images, where more than 50% of bg is transparent or
         </div>
     </section>
     <!-- End Testimonials Section -->
+    <style>
+      .disabled-day {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    </style>
+    
+<script>
+  // Disable Monday and Saturday in the date input field
+  $(document).ready(function() {
+    $('#Date').on('focus', function() {
+      var dateInputs = $(this);
+      var disabledDays = [1, 6]; // Monday (1) and Saturday (6)
 
+      dateInputs.on('change', function() {
+        var selectedDate = new Date($(this).val());
+        var day = selectedDate.getDay(); // 0 (Sunday) to 6 (Saturday)
 
+        // Disable Monday (day = 1) and Saturday (day = 6)
+        if (disabledDays.includes(day)) {
+          $(this).val(''); // Clear the selected date
+          alert('Please choose a date other than Monday or Saturday.');
+        }
+      });
 
+      // Apply CSS class to disable Monday and Saturday in the date picker
+      var datepicker = dateInputs.next('.datepicker');
+      if (datepicker.length) {
+        var days = datepicker.find('.day');
+        days.each(function() {
+          var dayNumber = parseInt($(this).text());
+          if (disabledDays.includes(dayNumber)) {
+            $(this).addClass('disabled-day');
+          }
+        });
+      }
+    });
+  });
+</script>
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
