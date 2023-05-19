@@ -11,6 +11,7 @@ if (isset($_POST['esubmit'])) {
 
   // Build email message
   $to = 'dkrmentor@gmail.com'; // Replace with your email address
+  // $to = 'aflowpros@gmail.com'; // Replace with your email address
   $subject = 'New Appointment Booking';
   $message = "Name: $name\n";
   $message .= "Address: $address\n";
@@ -24,7 +25,10 @@ if (isset($_POST['esubmit'])) {
   $headers = "From: $name <$to>";
   if (mail($to, $subject, $message, $headers)) {
     // Email sent successfully
-    echo "Thank you for booking an appointment. We will contact you shortly.";
+    //echo "Thank you for booking an appointment. We will contact you shortly.";
+    ?>
+    <script>window.location.href='index.html?submitted=1';</script>
+    <?php
   } else {
     // Error sending email
     echo "Sorry, there was an error booking your appointment. Please try again later.";
