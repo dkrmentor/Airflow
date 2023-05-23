@@ -10,8 +10,7 @@ if (isset($_POST['esubmit'])) {
   $package = $_POST['package-select'];
 
   // Build email message
-  $to = 'dkrmentor@gmail.com'; // Replace with your email address
-  // $to = 'aflowpros@gmail.com'; // Replace with your email address
+  $to = 'aflowpros@gmail.com'; // Replace with your email address
   $subject = 'New Appointment Booking';
   $message = "Name: $name\n";
   $message .= "Address: $address\n";

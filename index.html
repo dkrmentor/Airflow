@@ -1556,8 +1556,8 @@ because it requires specific images, where more than 50% of bg is transparent or
                 </div>
 
                 <div class="col-sm-6 form-group">
-                  <label for="address">Address</label>
-                  <input type="address" class="form-control" name="Locality" id="address" placeholder="Address"
+                  <label for="address">Full Address</label>
+                  <input type="address" class="form-control" name="Locality" id="address" placeholder="Address, City, State"
                     required>
                 </div>
 
@@ -1571,6 +1571,11 @@ because it requires specific images, where more than 50% of bg is transparent or
                   <input type="Date" name="date" class="form-control" id="Date" required>
                 </div>
                 <div class="col-sm-4 form-group">
+                  <label for="State" name="state">State</label>
+                  <input type="text" class="form-control" name="state" placeholder="City, State" >
+                </div>
+                
+                <!-- <div class="col-sm-4 form-group">
                   <label for="State" name="state">State</label>
                   <select class="form-control custom-select browser-default" name="state">
 
@@ -1641,7 +1646,7 @@ because it requires specific images, where more than 50% of bg is transparent or
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
                   </select>
-                </div>
+                </div> -->
                 <div class="col-sm-2 form-group">
                   <label for="zip">ZIP-Code</label>
                   <input type="zip" class="form-control" name="Zip" id="zip" placeholder="Zip-Code." required>
@@ -1803,7 +1808,7 @@ because it requires specific images, where more than 50% of bg is transparent or
             </div>
           </div> -->
 
-          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <form action="process_contact.php" method="post" role="form" class="php-email-form">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -1818,9 +1823,9 @@ because it requires specific images, where more than 50% of bg is transparent or
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div  class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
+                <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button name="csubmit"   type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
             
             
